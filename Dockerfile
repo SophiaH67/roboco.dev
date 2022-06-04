@@ -2,8 +2,6 @@ FROM nikolaik/python-nodejs:latest
 
 WORKDIR /app
 
-RUN npm i -g rimraf cross-env
-
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
