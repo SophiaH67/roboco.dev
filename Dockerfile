@@ -2,11 +2,14 @@ FROM nikolaik/python-nodejs:latest
 
 WORKDIR /app
 
+RUN npm i -g rimraf
+
 COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 
 COPY . .
+
 
 RUN python manage.py tailwind build
 
