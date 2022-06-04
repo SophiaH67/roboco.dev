@@ -1,16 +1,26 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roboco</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    {% tailwind_css %}
   </head>
-  <body>
-    {% block content %}{% endblock content %}
-    <footer>
-      <span> Current Server Time: {% now "Y-m-d H:i:s" %}</span>
-      <p>&copy; {% now "Y" %}</p>
-    </footer>
+  {% load static %}
+  <body
+    class="flex flex-col min-h-screen justify-between"
+    style="
+      background-image: url('{% static 'img/bg.jpg' %}');
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <div
+      class="min-h-screen min-w-[100vw] backdrop-blur-md lg:backdrop-blur-xl giga:backdrop-blur-2xl"
+    >
+      <div class="w-full h-full">{% block content %}{% endblock content %}</div>
+    </div>
   </body>
 </html>
