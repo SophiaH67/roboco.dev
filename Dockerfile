@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM nikolaik/python-nodejs:latest
 
 WORKDIR /app
 
