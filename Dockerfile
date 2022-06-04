@@ -2,7 +2,7 @@ FROM nikolaik/python-nodejs:latest
 
 WORKDIR /app
 
-RUN npm i -g rimraf
+RUN npm i -g rimraf cross-env
 
 COPY requirements.txt .
 
