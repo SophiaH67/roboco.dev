@@ -9,12 +9,25 @@
   </div>
   <!-- Show User Roles -->
   <span class="text-pink-400 text-center">
-    {% if user.groups %}
-    <span>You are a member of the following groups:</span>
-    {% for group in user.groups.all %}
-    <span class="text-yellow-400">{{ group.name }}</span>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
+    {% if user.groups|length > 0 %}
+      <span>You are a member of the following groups:</span>
+      {% for group in user.groups.all %}
+        <span class="text-yellow-400">{{ group.name }}</span>{% if not forloop.last %}, {% endif %}
+      {% endfor %}
     {% endif %}
   </span>
+  <!--- Show Invites -->
+  <div class="flex flex-wrap justify-center">
+    {% if user.invites_left == 0 %}
+      <span class="text-pink-400 text-center">You have <span class="text-yellow-400">no</span> invites left.</span>
+    {% else %}
+      <span class="text-pink-400 text-center w-full">You have <span class="text-yellow-400">{{ user.invites_left }}</span> invites left.
+      <a
+        href="{% url 'invite_user' %}"
+        class="text-white hover:text-purple-400 transition ease-in-out duration-500">
+        Invite someone new?
+      </a></span>
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

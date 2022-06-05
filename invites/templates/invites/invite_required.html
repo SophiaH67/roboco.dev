@@ -1,1 +1,10 @@
-You need a valid invite to access this URL.
+{% extends "roboco/layout.html" %}
+{% block title %}Roboco - Unauthorized{% endblock  %}
+{% block content %}
+<div class="text-center">
+  <h1 class="text-3xl text-pink-400">
+    You need a <span class="text-yellow-400">valid</span> invitation code to become a Robocosa.
+  </h1>
+  <a href="{% url 'index' %}" class="text-white">Click <span class="text-yellow-400">here</span> to go back</a>
+</div>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from invites.decorators import invite_required
+from invites.decorators import create_invite_code, invite_required
 from users.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 
@@ -18,4 +18,7 @@ def register(request):
 
 @login_required
 def profile(request):
+    context = {
+        "invite_code": create_invite_code(request.user),
+    }
     return render(request, "users/profile.html")

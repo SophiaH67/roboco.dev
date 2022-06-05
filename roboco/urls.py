@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from roboco import views
 from users import views as user_views
+from invites import views as invite_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -36,6 +37,8 @@ urlpatterns = [
         name="logout",
     ),
     path("profile/", user_views.profile, name="profile"),
+    # Invite views
+    path("invite/", invite_views.invite_user, name="invite_user"),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]
