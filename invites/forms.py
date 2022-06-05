@@ -23,7 +23,7 @@ class InviteUserForm(forms.Form):
         email = self.cleaned_data["email"]
 
         context = {
-            "invite_link": f"https://roboco.dev/register/?invite={create_invite_code(self.inviter)}",
+            "invite_link": f"https://roboco.dev/register/?invite={create_invite_code(self.inviter, email)}",
             "inviter": self.inviter,
         }
 

@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 
 @invite_required
-def register(request, inviter=None):
+def register(request, inviter=None, email=None):
     if request.method == "POST":
-        form = UserRegisterForm(request.POST)
+        form = UserRegisterForm(request.POST, email=email)
         if form.is_valid():
             user = form.save()
 
@@ -19,13 +19,10 @@ def register(request, inviter=None):
 
             return redirect("login")
     else:
-        form = UserRegisterForm()
+        form = UserRegisterForm(email=email)
     return render(request, "users/register.html", {"form": form})
 
 
 @login_required
 def profile(request):
-    context = {
-        "invite_code": create_invite_code(request.user),
-    }
     return render(request, "users/profile.html")
