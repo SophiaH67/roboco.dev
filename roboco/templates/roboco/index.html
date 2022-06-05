@@ -1,34 +1,32 @@
 {% extends "roboco/layout.html" %} {% block content %}
-<div class="w-full flex min-h-screen justify-center items-center">
-  <!-- Links -->
-  <div class="w-full max-w-xl pb-[10vh]">
-    <div class="text-6xl font-bold mb-6 text-center">
-      <span class="text-pink-400">Roboco</span
-      ><span class="text-yellow-400">.</span><span class="text-white">dev</span>
-    </div>
-    <div class="w-full">
-      <p class="text-center text-gray-800">
-        <img
-          src="https://twemoji.maxcdn.com/svg/1f680.svg"
-          class="inline-block w-8 h-8 mx-auto"
-        />Highspec Roboco website written in Django<img
-          src="https://twemoji.maxcdn.com/svg/1f680.svg"
-          class="inline-block w-8 h-8 mx-auto"
-        />
-      </p>
-    </div>
-    <br />
-    <br />
-    <div class="flex flex-row justify-center items-center">
-      {% for route in routes %}
-      <a
-        href="{{route.0}}"
-        class="rounded-sm px-3 py-2 text-3xl mx-2 text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
-      >
-        {{route.1}}
-      </a>
-      {% endfor %}
-    </div>
+<!-- Links -->
+<div class="w-full max-w-xl pb-[10vh]">
+  <div class="text-6xl font-bold mb-6 text-center">
+    <span class="text-pink-400">Roboco</span
+    ><span class="text-yellow-400">.</span><span class="text-white">dev</span>
+  </div>
+  <div class="w-full">
+    <p class="text-center text-gray-800">
+      <img
+        src="https://twemoji.maxcdn.com/svg/1f680.svg"
+        class="inline-block w-8 h-8 mx-auto"
+      />Highspec Roboco website written in Django<img
+        src="https://twemoji.maxcdn.com/svg/1f680.svg"
+        class="inline-block w-8 h-8 mx-auto"
+      />
+    </p>
+  </div>
+  <br />
+  <br />
+  <div class="flex flex-row justify-center items-center">
+    {% for route in routes %}
+    <a
+      href="{{route.0}}"
+      class="rounded-sm px-3 py-2 text-3xl mx-2 text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
+    >
+      {{route.1}}
+    </a>
+    {% endfor %}
   </div>
 </div>
 

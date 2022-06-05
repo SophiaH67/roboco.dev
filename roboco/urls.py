@@ -16,11 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from roboco import views
+from users import views as user_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index, name="index"),
     path("why", views.why, name="why"),
+    # User views
+    path("register/", user_views.register, name="register"),
+    # path("profile/", user_views.profile, name="profile"),
+    # path("login/", user_views.login, name="login"),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]

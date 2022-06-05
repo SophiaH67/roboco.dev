@@ -18,9 +18,42 @@
     "
   >
     <div
-      class="min-h-screen min-w-[100vw] backdrop-blur-md lg:backdrop-blur-xl giga:backdrop-blur-2xl"
+      class="min-h-screen min-w-[100vw] backdrop-blur-md lg:backdrop-blur-xl giga:backdrop-blur-2xl relative"
     >
-      <div class="w-full h-full">{% block content %}{% endblock content %}</div>
+      {% if messages %} {% for message in messages %}
+      <div
+        class="w-max min-w-[24rem] max-w-[100vw] border-fuchsia-400 text-fuchsia-400 text-center border-2 rounded shadow px-4 py-1 my-1 mx-auto"
+      >
+        {{ message.tags }}: {{ message }}
+      </div>
+      {% endfor %} {% endif %}
+      <!-- BEGIN NAV -->
+      <div
+        class="absolute h-12 border-b m-0 w-[96vw] mx-[2vw] flex justify-between"
+      ></div>
+      <div class="absolute w-[98vw] h-12 flex justify-between mx-[1vw]">
+        <div class="flex items-center text-xl">
+          <a href="/">
+            <span class="text-pink-400">Roboco</span
+            ><span class="text-yellow-400">.</span
+            ><span class="text-white">dev</span>
+          </a>
+        </div>
+        <div class="flex items-center text-xl">
+          <a
+            type="submit"
+            href="/login"
+            class="w-full rounded-sm px-3 py-1 text-xl text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
+          >
+            Login
+          </a>
+        </div>
+      </div>
+
+      <!-- END NAV -->
+      <div class="w-full flex min-h-screen justify-center items-center">
+        {% block content %}{% endblock content %}
+      </div>
     </div>
   </body>
 </html>
