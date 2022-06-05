@@ -60,18 +60,11 @@
       type="submit"
       class="w-full mt-4 rounded-sm px-3 py-2 text-3xl text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
     >
-      Become a Robocosa
+      {% block submit %}Submit{% endblock %}
     </button>
   </form>
   <div class="w-full flex justify-center mt-2">
-    <small class="text-xs text-pink-400 w-max"
-      >Already a Robocosa<span class="text-yellow-400">?</span>
-      <a
-        href="/login"
-        class="text-white hover:text-purple-400 transition ease-in-out duration-500"
-        >Sign in instead</a
-      ></small
-    >
+    {% block extra %}{% endblock %}
   </div>
 </div>
 {% endblock %}

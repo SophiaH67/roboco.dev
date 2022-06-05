@@ -1,0 +1,9 @@
+{% extends "roboco/layout.html" %}
+{% block title %}Roboco - Welcome Back{% endblock  %}
+{% block content %}
+<h1 class="text-3xl text-white">
+  You have been logged out.
+  <meta http-equiv="refresh" content="3;url={% url 'login' %}" />
+  <a href="{% url 'login' %}" class="text-white">Click here to login</a>
+</h1>
+{% endblock %}

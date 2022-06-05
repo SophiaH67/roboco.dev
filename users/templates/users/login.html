@@ -1,1 +1,12 @@
 {% extends "users/form.html" %}
+{% block title %}Roboco - Welcome Back{% endblock  %}
+{% block formtitle %}Sign In{% endblock %}
+{% block submit %}Log In{% endblock %}
+{% block extra %}<small class="text-xs text-pink-400 w-max">
+  New to Roboco<span class="text-yellow-400">?</span>
+<a
+  href="{% url 'register' %}"
+  class="text-white hover:text-purple-400 transition ease-in-out duration-500">
+  Create an account
+</a></small>
+{% endblock %}
