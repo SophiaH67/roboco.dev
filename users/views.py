@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
+from invites.decorators import invite_required
 from users.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 
 
+@invite_required
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
