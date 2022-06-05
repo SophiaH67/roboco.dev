@@ -24,11 +24,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=i%z!!a4lo1_g3l%_-32rqlj@7&z^6n^06ob1eb)c9(*ynk+&h"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 TAILWIND_APP_NAME = "theme"
@@ -89,6 +84,8 @@ WSGI_APPLICATION = "roboco.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 if os.getenv("PYTHON_ENV") == "production":
+    DEBUG = False
+    SECRET_KEY = os.getenv("SECRET_KEY")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -100,6 +97,11 @@ if os.getenv("PYTHON_ENV") == "production":
         }
     }
 else:
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = "django-insecure-=i%z!!a4lo1_g3l%_-32rqlj@7&z^6n^06ob1eb)c9(*ynk+&h"
+
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
