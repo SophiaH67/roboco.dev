@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "roboco.apps.RobocoConfig",
     "users.apps.UsersConfig",
     "invites.apps.InvitesConfig",
+    "theme.apps.ThemeConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
