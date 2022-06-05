@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+import os
+
 """
 Django settings for roboco project.
 
@@ -33,6 +38,7 @@ TAILWIND_APP_NAME = "theme"
 INSTALLED_APPS = [
     "roboco.apps.RobocoConfig",
     "users.apps.UsersConfig",
+    "invites.apps.InvitesConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -133,3 +139,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "index"
 LOGIN_URL = "login"
+
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_TIMEOUT = 10
+EMAIL_HOST = "smtp.fastmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
