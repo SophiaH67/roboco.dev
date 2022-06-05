@@ -14,8 +14,9 @@ def invite_required(view_func):
 
     def wrapper(request, *args, **kwargs):
         invite_code = request.GET.get("invite")
-        if is_invite_code_valid(invite_code)[0]:
-            return view_func(request, *args, **kwargs)
+        valid, inviter = is_invite_code_valid(invite_code)
+        if valid:
+            return view_func(request, *args, **kwargs, inviter=inviter)
         return render(request, "invites/invite_required.html", status=401)
 
     return wrapper
@@ -35,7 +36,7 @@ def minimum_invites_left(view_func):
     return wrapper
 
 
-def is_invite_code_valid(invite_code: str | None) -> Union[bool, str]:
+def is_invite_code_valid(invite_code: str | None) -> Union[bool, str | User]:
     """
     Check if the invite code is valid.
     """

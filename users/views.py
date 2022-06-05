@@ -5,11 +5,18 @@ from django.contrib.auth.decorators import login_required
 
 
 @invite_required
-def register(request):
+def register(request, inviter=None):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+
+            user.invited_by = inviter
+            user.save()
+
+            inviter.invites_left -= 1
+            inviter.save()
+
             return redirect("login")
     else:
         form = UserRegisterForm()

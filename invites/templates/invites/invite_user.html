@@ -1,5 +1,11 @@
 {% extends "users/form.html" %}
-{% block title %}Roboco - Invite a new Robocosa{% endblock  %}
+{% block title %}Roboco - Invite a new Robosa{% endblock  %}
 {% block formtitle %}Invite{% endblock %}
 {% block submit %}Invite{% endblock %}
-{% block extra %}{% endblock %}
+{% block extra %}
+<p class="text-sm italic text-center">
+  Please note that you will be able to invite a maximum of {{ user.invites_left }} Robosas.<br />
+  Your invite number will go down after someone accepts your invitation, sending does not count.
+</p>
+
+{% endblock %}

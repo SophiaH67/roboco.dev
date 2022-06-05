@@ -8,7 +8,6 @@ from django.utils.html import strip_tags
 
 class InviteUserForm(forms.Form):
     email = forms.EmailField(label="Email")
-    message = forms.CharField(label="Message", widget=forms.Textarea)
 
     def __init__(self, *args, **kwargs):
         self.inviter = kwargs.pop("user")
@@ -22,10 +21,8 @@ class InviteUserForm(forms.Form):
 
     def save(self):
         email = self.cleaned_data["email"]
-        message = self.cleaned_data["message"]
 
         context = {
-            "message": message,
             "invite_link": f"https://roboco.dev/register/?invite={create_invite_code(self.inviter)}",
             "inviter": self.inviter,
         }
@@ -36,7 +33,7 @@ class InviteUserForm(forms.Form):
         send_mail(
             "Invitation to join",
             plain_message,
-            "robocosa@roboco.dev",
+            "robosa@roboco.dev",
             [email],
             fail_silently=False,
             html_message=html_message,
