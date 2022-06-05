@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
+    "widget_tweaks",
 ]
 
 INTERNAL_IPS = ["127.0.0.1"]

@@ -1,0 +1,77 @@
+{% extends "roboco/layout.html" %}
+{% block content %} {% load widget_tweaks %}
+<div
+  class="w-max bg-transparent text-white border-2 border-gray-100 shadow px-3 py-6 relative"
+>
+  <div
+    class="bg-black opacity-10 w-full h-full absolute top-0 left-0 -z-10"
+  ></div>
+  <form method="POST" class="w-full">
+    <p
+      class="hidden shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+    ></p>
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+    {% endfor %}
+    <fieldset>
+      <div class="w-full flex justify-center">
+        <lengend class="text-4xl font-semibold">{% block formtitle %}Title{% endblock %}</lengend>
+      </div>
+      {% for field in form.visible_fields %}
+      <label
+        class="block text-gray-100 text-sm font-bold mb-2"
+        for="{{ field.id_for_label }}"
+      >
+        {{ field.label }}
+      </label>
+      {{field | add_class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline '}}
+      <div class="flex flex-col">
+        {% for error in field.errors %}
+          <span class="text-xs text-red-400 font-semibold italic">{{ error }}</span>
+        {% endfor %} 
+      </div>
+      {% endfor %}
+    </fieldset>
+
+    {% comment %}
+    <fieldset>
+      <div class="w-full flex justify-center">
+        <lengend class="text-4xl font-semibold">Join Today</lengend>
+      </div>
+      {{ form.non_field_errors }} {% for field in form.fields %}
+      <label
+        class="block text-gray-100 text-sm font-bold mb-2"
+        for="{{ field }}"
+      >
+        {% if field == 'password1' %} Password {% elif field == 'password2' %}
+        Confirm Password {% else %} {{ field|title }} {% endif %}
+      </label>
+      <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="{{ field }}"
+        name="{{ field }}"
+        type="{% if field == 'password1' %}password{% elif field == 'password2' %}password{% else %}text{% endif %}"
+        placeholder="{% if field == 'password1' %}Password{% elif field == 'password2' %}Confirm Password{% else %}{{ field|title }} {% endif %}"
+      />
+      {% endfor %} {% endcomment %}
+    </fieldset>
+    <button
+      type="submit"
+      class="w-full mt-4 rounded-sm px-3 py-2 text-3xl text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
+    >
+      Become a Robocosa
+    </button>
+  </form>
+  <div class="w-full flex justify-center mt-2">
+    <small class="text-xs text-pink-400 w-max"
+      >Already a Robocosa<span class="text-yellow-400">?</span>
+      <a
+        href="/login"
+        class="text-white hover:text-purple-400 transition ease-in-out duration-500"
+        >Sign in instead</a
+      ></small
+    >
+  </div>
+</div>
+{% endblock %}

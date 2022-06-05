@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Roboco</title>
+    <title>{% block title %}Roboco{% endblock %}</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -20,13 +20,6 @@
     <div
       class="min-h-screen min-w-[100vw] backdrop-blur-md lg:backdrop-blur-xl giga:backdrop-blur-2xl relative"
     >
-      {% if messages %} {% for message in messages %}
-      <div
-        class="w-max min-w-[24rem] max-w-[100vw] border-fuchsia-400 text-fuchsia-400 text-center border-2 rounded shadow px-4 py-1 my-1 mx-auto"
-      >
-        {{ message.tags }}: {{ message }}
-      </div>
-      {% endfor %} {% endif %}
       <!-- BEGIN NAV -->
       <div
         class="absolute h-12 border-b m-0 w-[96vw] mx-[2vw] flex justify-between"

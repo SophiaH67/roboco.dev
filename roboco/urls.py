@@ -25,7 +25,7 @@ urlpatterns = [
     # User views
     path("register/", user_views.register, name="register"),
     # path("profile/", user_views.profile, name="profile"),
-    # path("login/", user_views.login, name="login"),
+    path("login/", user_views.login, name="login"),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]
