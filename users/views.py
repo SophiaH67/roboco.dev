@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from invites.decorators import create_invite_code, invite_required
+from invites.decorators import invite_required
+from invites.lib import send_invite_accepted_email, send_user_registered_email
 from users.forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 
@@ -16,6 +17,9 @@ def register(request, inviter=None, email=None):
 
             inviter.invites_left -= 1
             inviter.save()
+
+            send_invite_accepted_email(user, inviter)
+            send_user_registered_email(user)
 
             return redirect("login")
     else:

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <!-- Compile with 
+    mailwind --input-html ./invites/templates/invites/invite_accepted_email_body.src.html --output-html ./invites/templates/invites/invite_accepted_email_body.html
+    -->
+    <div class="w-full h-full bg-gray-100 py-12 m-0" style="margin: 0; height: 100%; width: 100%; --tw-bg-opacity: 1; background-color: rgb(243 244 246 / var(--tw-bg-opacity)); padding-top: 48px; padding-bottom: 48px;">
+      <div class="bg-white max-w-3xl mx-auto py-3 px-6" style="margin-left: auto; margin-right: auto; max-width: 48rem; --tw-bg-opacity: 1; background-color: rgb(255 255 255 / var(--tw-bg-opacity)); padding-top: 12px; padding-bottom: 12px; padding-left: 24px; padding-right: 24px;">
+        <h1 class="text-6xl font-bold text-pink-400 m-0" style="margin: 0; font-size: 60px; font-weight: 700; --tw-text-opacity: 1; color: rgb(244 114 182 / var(--tw-text-opacity));">Hello,</h1>
+        <p class="text-2xl text-gray-700" style="font-size: 24px; --tw-text-opacity: 1; color: rgb(55 65 81 / var(--tw-text-opacity));">
+          <span class="text-pink-400" style="--tw-text-opacity: 1; color: rgb(244 114 182 / var(--tw-text-opacity));">Your</span> invite to <span class="text-yellow-400" style="--tw-text-opacity: 1; color: rgb(250 204 21 / var(--tw-text-opacity));">{{ user.username }}</span> has been accepted.
+          You now have <span class="text-yellow-400" style="--tw-text-opacity: 1; color: rgb(250 204 21 / var(--tw-text-opacity));">{% if inviter.invites_left <= 0 %}no{% else %}{{ inviter.invites_left }}{% endif %}</span> invites left.
+        </p>
+        <div class="bg-pink-400 w-full h-[0.1rem] rounded-full" style="height: 0.1rem; width: 100%; border-radius: 9999px; --tw-bg-opacity: 1; background-color: rgb(244 114 182 / var(--tw-bg-opacity));"></div>
+      </div>
+      <footer class="mt-4 text-center text-gray-700" style="margin-top: 16px; text-align: center; --tw-text-opacity: 1; color: rgb(55 65 81 / var(--tw-text-opacity));">
+        <p class="text-gray-700" style="--tw-text-opacity: 1; color: rgb(55 65 81 / var(--tw-text-opacity));">
+          If you did not invite this user, please contact <a href="mailto:contact@roboco.dev">
+            contact@roboco.dev
+          </a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

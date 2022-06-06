@@ -1,9 +1,6 @@
 from django import forms
-from invites.decorators import create_invite_code
+from invites.lib import send_invite_email
 from users.models import User
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 
 class InviteUserForm(forms.Form):
@@ -21,20 +18,4 @@ class InviteUserForm(forms.Form):
 
     def save(self):
         email = self.cleaned_data["email"]
-
-        context = {
-            "invite_link": f"https://roboco.dev/register/?invite={create_invite_code(self.inviter, email)}",
-            "inviter": self.inviter,
-        }
-
-        html_message = render_to_string("invites/email_body.html", context)
-        plain_message = strip_tags(html_message)
-
-        send_mail(
-            "Invitation to join",
-            plain_message,
-            "robosa@roboco.dev",
-            [email],
-            fail_silently=False,
-            html_message=html_message,
-        )
+        send_invite_email(self.inviter, email)
