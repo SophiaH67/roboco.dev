@@ -7,8 +7,9 @@
     class="bg-black opacity-10 w-full h-full absolute top-0 left-0 -z-10"
   ></div>
   <form method="POST" class="w-full">
+    {% comment %} This <p> tag is so that tailwind can generate the required styles {% endcomment %}
     <p
-      class="hidden shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      class="hidden shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-transparent text-white border-yellow-400 border-1 outline-none focus:border-pink-400 transition ease-in-out duration-500"
     ></p>
     {% csrf_token %}
     {% for hidden in form.hidden_fields %}
@@ -25,36 +26,13 @@
       >
         {{ field.label }}
       </label>
-      {{field | add_class:'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline '}}
+      {{field | add_class:'shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-transparent text-white border-yellow-400 border-1 outline-none focus:border-pink-400 transition ease-in-out duration-500 '}}
       <div class="flex flex-col">
         {% for error in field.errors %}
           <span class="text-xs text-red-400 font-semibold italic">{{ error }}</span>
         {% endfor %} 
       </div>
       {% endfor %}
-    </fieldset>
-
-    {% comment %}
-    <fieldset>
-      <div class="w-full flex justify-center">
-        <lengend class="text-4xl font-semibold">Join Today</lengend>
-      </div>
-      {{ form.non_field_errors }} {% for field in form.fields %}
-      <label
-        class="block text-gray-100 text-sm font-bold mb-2"
-        for="{{ field }}"
-      >
-        {% if field == 'password1' %} Password {% elif field == 'password2' %}
-        Confirm Password {% else %} {{ field|title }} {% endif %}
-      </label>
-      <input
-        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="{{ field }}"
-        name="{{ field }}"
-        type="{% if field == 'password1' %}password{% elif field == 'password2' %}password{% else %}text{% endif %}"
-        placeholder="{% if field == 'password1' %}Password{% elif field == 'password2' %}Confirm Password{% else %}{{ field|title }} {% endif %}"
-      />
-      {% endfor %} {% endcomment %}
     </fieldset>
     <button
       type="submit"
