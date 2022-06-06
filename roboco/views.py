@@ -4,6 +4,7 @@ from django.shortcuts import render
 routes = [
     ("https://c.roboco.dev/", "NextCloud"),
     ("https://c.roboco.dev/apps/", "Apps"),
+    ("https://mail.roboco.dev/", "Email"),
 ]
 
 # Sort routes by name
