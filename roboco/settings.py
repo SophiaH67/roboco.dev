@@ -169,3 +169,5 @@ SERVER_EMAIL = "robosa@roboco.dev"
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://roboco.dev"]
 CORS_ORIGIN_WHITELIST = ["http://localhost", "https://roboco.dev"]
+
+SESSION_COOKIE_DOMAIN = ".roboco.dev"
