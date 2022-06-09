@@ -17,7 +17,7 @@ def index(request):
     services_clone = deepcopy(services)
     # Replace all [2](permission string) with a actual permission object
     for service in services_clone:
-        service[2] = request.user.has_perm(service[2])
+        service[2] = request.user.has_perm(f"nginx.{service[2]}")
 
     context = {
         "services": services_clone,

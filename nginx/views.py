@@ -18,7 +18,7 @@ def return_nginx_response(request, service):
         return HttpResponse("Service not found", status=404)
     permission = services[index][0]
     # Check if the user has the permission to access the service
-    if request.user.has_perm(permission):
+    if request.user.has_perm(f"nginx.{permission}"):
         return HttpResponse("OK", status=200)
     else:
         return HttpResponse("Forbidden", status=403)
