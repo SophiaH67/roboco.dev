@@ -16,3 +16,6 @@ services = [
         "Can access Nextcloud",
     ),
 ]
+
+# Sort the services by name
+services.sort(key=lambda x: x[0])
