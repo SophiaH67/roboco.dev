@@ -1,8 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import permissions as nginx_permissions
+from .services import services
 
-services = [service for code, name, service in nginx_permissions]
+service_names = [
+    service_name
+    for service_name, service_url, service_permission, permission_description in services
+]
 
 
 def return_nginx_response(request, service):
@@ -10,10 +13,10 @@ def return_nginx_response(request, service):
     if not request.user.is_authenticated:
         return HttpResponse("Unauthorized", status=401)
     try:
-        index = services.index(service)
+        index = service_names.index(service)
     except ValueError:
         return HttpResponse("Service not found", status=404)
-    permission = nginx_permissions[index][0]
+    permission = services[index][0]
     # Check if the user has the permission to access the service
     if request.user.has_perm(permission):
         return HttpResponse("OK", status=200)

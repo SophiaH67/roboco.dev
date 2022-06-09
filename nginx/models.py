@@ -1,13 +1,10 @@
 from django.db import models
-
-permissions = [
-    ("can_access_sonarr", "Can access Sonarr", "sonarr"),
-    ("can_access_radarr", "Can access Radarr", "radarr"),
-    ("can_access_lidarr", "Can access Lidarr", "lidarr"),
-    ("can_access_qbittorrent", "Can access QBittorrent", "qbittorrent"),
-]
+from .services import services
 
 
 class Nginx(models.Model):
     class Meta:
-        permissions = [(code, name) for code, name, service in permissions]
+        permissions = [
+            (service_permission, permission_description)
+            for service_name, service_url, service_permission, permission_description in services
+        ]
