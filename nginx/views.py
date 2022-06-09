@@ -16,7 +16,7 @@ def return_nginx_response(request, service):
         index = service_names.index(service)
     except ValueError:
         return HttpResponse("Service not found", status=404)
-    permission = services[index][0]
+    permission = services[index][2]
     # Check if the user has the permission to access the service
     if request.user.has_perm(f"nginx.{permission}"):
         return HttpResponse("OK", status=200)
