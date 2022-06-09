@@ -35,7 +35,7 @@
         <div class="flex items-center text-xl">
           {% if user.is_authenticated %}
           <a href="{% url 'profile' %}" class="text-white whitespace-nowrap mr-4">
-            Harobo <span class="text-pink-400">{{ user.username }}</span>~
+            Harobo <span class="text-pink-400 capitalize">{{ user.username }}</span>~
           </a>
           <a
             href="{% url 'logout' %}"
