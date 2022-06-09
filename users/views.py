@@ -1,10 +1,12 @@
 from django.shortcuts import redirect, render
 from invites.decorators import invite_required
 from invites.lib import send_invite_accepted_email, send_user_registered_email
-from users.forms import UserRegisterForm
+from .decorators import logout_required
+from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 
 
+@logout_required
 @invite_required
 def register(request, inviter=None, email=None):
     if request.method == "POST":
