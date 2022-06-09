@@ -163,6 +163,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "robosa@roboco.dev"
+SERVER_EMAIL = "robosa@roboco.dev"
 
 CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://roboco.dev"]
 CORS_ORIGIN_WHITELIST = ["http://localhost", "https://roboco.dev"]
