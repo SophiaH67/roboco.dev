@@ -19,7 +19,6 @@ from roboco import views
 from users import views as user_views
 from invites import views as invite_views
 from django.contrib.auth import views as auth_views
-from nginx.views import urlpatterns as nginx_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -40,8 +39,8 @@ urlpatterns = [
     path("profile/", user_views.profile, name="profile"),
     # Invite views
     path("invite/", invite_views.invite_user, name="invite_user"),
+    # Nginx
+    path("nginx/", include("nginx.urls")),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
-    # Nginx
-    *nginx_urls,
 ]

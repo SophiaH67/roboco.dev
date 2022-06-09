@@ -1,6 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.urls import path
 from .models import permissions as nginx_permissions
 
 services = [service for code, name, service in nginx_permissions]
@@ -25,17 +24,3 @@ def nginx_redirect(request):
     redirect_url = request.GET.get("redirect", "https://roboco.dev/")
     # Redirect to the redirect_url
     return HttpResponseRedirect(redirect_url)
-
-
-# /nginx/[service]
-urlpatterns = [
-    path(
-        r"^nginx/(?P<service>{})$".format("|".join(services)),
-        return_nginx_response,
-        name="nginx",
-    ),
-    path(
-        "nginx/redirectback",
-        nginx_redirect,
-    ),
-]
