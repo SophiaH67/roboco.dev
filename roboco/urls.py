@@ -39,6 +39,8 @@ urlpatterns = [
     path("profile/", user_views.profile, name="profile"),
     # Invite views
     path("invite/", invite_views.invite_user, name="invite_user"),
+    # Nginx
+    path("nginx/", include("nginx.urls")),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]
