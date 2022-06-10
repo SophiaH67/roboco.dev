@@ -15,6 +15,12 @@ services = [
         "can_access_nextcloud",
         "Can access Nextcloud",
     ],
+    [
+        "jackett",
+        "https://jackett.roboco.dev/",
+        "can_access_jackett",
+        "Can access Jackett",
+    ],
 ]
 
 # Sort the services by name
