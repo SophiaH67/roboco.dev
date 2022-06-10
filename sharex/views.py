@@ -52,8 +52,11 @@ def view_image(request, id):
     # Either x-forwarded-for or remote_addr
     ip = request.META.get("HTTP_X_FORWARDED_FOR", request.META.get("REMOTE_ADDR"))
     # Reverse lookup the IP
-    ip = reversename.from_address(ip)
-    ip = resolver.query(ip, "PTR")[0].to_text()
+    try:
+        ip = reversename.from_address(ip)
+        ip = resolver.query(ip, "PTR")[0].to_text()
+    except:
+        ip = "Unknown"
     print(f"{ip} requested {image_url}")
     if "discord" in ip.lower() or "googleusercontent" in ip.lower():
         return redirect(image_url)
