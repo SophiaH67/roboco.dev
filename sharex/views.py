@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
+from dns import reversename, resolver
 
 from sharex.forms import ImageUploadForm
 from sharex.models import SharexImage, SharexToken
@@ -48,13 +49,25 @@ def upload(request):
 def view_image(request, id):
     upload = SharexImage.objects.get(id=id)
     image_url = request.build_absolute_uri(f"/{upload.image}")
-    return render(request, "sharex/view.html", {"upload": upload, "image_url": image_url})
+    # Either x-forwarded-for or remote_addr
+    ip = request.META.get("HTTP_X_FORWARDED_FOR", request.META.get("REMOTE_ADDR"))
+    # Reverse lookup the IP
+    ip = reversename.from_address(ip)
+    ip = resolver.query(ip, "PTR")[0].to_text()
+    print(f"{ip} requested {image_url}")
+    if "discord" in ip.lower() or "googleusercontent" in ip.lower():
+        return redirect(image_url)
+
+    return render(
+        request, "sharex/view.html", {"upload": upload, "image_url": image_url}
+    )
 
 
 def serve_image(request, filename):
     file_path = settings.MEDIA_ROOT / "sharex" / filename
     if not os.path.exists(file_path):
         return HttpResponse(status=404)
+        # accept-ranges: bytes
     return HttpResponse(content=open(file_path, "rb").read(), content_type="image/png")
 
 
