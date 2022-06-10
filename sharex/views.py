@@ -1,12 +1,15 @@
 import os
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
 
 from sharex.forms import ImageUploadForm
-from sharex.models import SharexImage
+from sharex.models import SharexImage, SharexToken
+from sharex.token import generate_sharex_token, validate_sharex_token
+from users.models import User
 
 # Create your views here.
 
@@ -17,16 +20,21 @@ def upload(request):
         return render(request, "sharex/upload.html")
     if request.method != "POST":
         return HttpResponse(status=405)
+
+    user_id = validate_sharex_token(request.POST.get("token"))
+    if user_id is None:
+        return HttpResponse(status=403)
+
     form = ImageUploadForm(request.POST, request.FILES)
+
     if not form.is_valid():
         return HttpResponse(status=400)
-    upload = form.save()
+    user = User.objects.get(id=user_id)
+    upload = form.save(user)
 
     # Get base url from request
     url = request.build_absolute_uri("/")
-    print(url)
     url += f"s/{upload.id}/"
-    print(url)
 
     return HttpResponse(
         json.dumps(
@@ -39,7 +47,8 @@ def upload(request):
 
 def view_image(request, id):
     upload = SharexImage.objects.get(id=id)
-    return render(request, "sharex/view.html", {"upload": upload})
+    image_url = request.build_absolute_uri(f"/{upload.image}")
+    return render(request, "sharex/view.html", {"upload": upload, "image_url": image_url})
 
 
 def serve_image(request, filename):
@@ -47,3 +56,13 @@ def serve_image(request, filename):
     if not os.path.exists(file_path):
         return HttpResponse(status=404)
     return HttpResponse(content=open(file_path, "rb").read(), content_type="image/png")
+
+
+@login_required
+def create_token(request):
+    if request.method != "POST":
+        return redirect("upload")
+    token = SharexToken.objects.create(
+        user=request.user, token=generate_sharex_token(request.user.id)
+    )
+    return HttpResponse(token.token, content_type="text/plain; charset=utf-8")
