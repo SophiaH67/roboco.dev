@@ -1,0 +1,17 @@
+{% extends "roboco/layout.html" %}
+{% block title %}Roboco - {{ upload.title }}{% endblock%}
+{% block meta %}
+    {% comment %} img {% endcomment %}
+    <meta property="og:image" content="{{ image_url }}" />
+    {% comment %} title {% endcomment %}
+    <meta property="og:title" content="{{ upload.title }}" />
+    <meta name="twitter:card" content="summary_large_image">
+{% endblock %}
+{% block content %}
+  <div class="relative border-2 border-white px-3 py-6 shadow md:w-[60vw] w-[100vw] max-w-screen text-white">
+    <div class="absolute bg-black w-full h-full top-0 left-0 opacity-10 -z-10 pointer-events-none"></div>
+    <h1 class="text-3xl block text-center">{{ upload.title }}</h1>
+    <img class="mx-auto w-[50%] min-w-[50vw] md:min-w-[30vw]" src="{{ image_url }}" alt="{{ upload.title }}">
+    <span class="text-sm text-gray-200 italic text-center block">Uploaded by <span class="text-yellow-400">{{ upload.uploader.username }}</span> at <span class='text-pink-400'>{{ upload.created_at }}</span></span>
+  </div>
+{% endblock %}

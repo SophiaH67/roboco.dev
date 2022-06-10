@@ -1,0 +1,48 @@
+{% extends "roboco/layout.html" %}
+{% block title %}Roboco - Upload{% endblock%}
+{% block content %}
+<div class="text-white relative px-3 py-6">
+    <h1 class="text-pink-400 text-6xl font-bold text-center mb-2 mt-12">Upload</h1>
+    <p class="w-full text-center">
+        Configure shareX to upload your screenshots to Roboco. <br>
+    </p>
+    <div class="mx-auto max-w-xl">
+        <h2 class="text-yellow-400 text-3xl">Step 1:</h2>
+        <p>
+            {%if user.sharex_tokens.all|length > 0 %}
+            Your tokens:
+            <table class="table-auto border p-2 border-pink-400">
+                <thead>
+                    <tr>
+                        <th class="p-2 text-yellow-400">Token</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for token in user.sharex_tokens.all %}
+                    <tr>
+                        <td class="p-2 border border-pink-400 text-yellow-400">{{token.token}}</td>
+                    </tr>
+                    {% endfor %}
+            </table>
+            {% else %}
+            You have no tokens.
+            Make a token by clicking the button below. <br>
+            <form action="{% url 'create_token' %}" method="POST">
+                {% csrf_token %}
+                <button class="bg-yellow-400 text-white font-bold py-2 px-4 rounded-full">Make Token</button>
+            </form>
+            {% endif %}
+        </p>
+    </div>
+    <div class="mx-auto">
+        <h2 class="text-yellow-400 text-3xl">Step 2:</h2>
+        <p>
+            Share X main window -> Destinations -> Custom Uploader Settings. Then make sure
+            it looks like the following(replace blurred with your own token).
+        </p>
+        <div class="border border-pink-400 p-2 max-w-3xl mx-auto">
+            <img src="/static/img/sharex_custom_uploader_settings.png" alt="ShareX Custom Uploader Settings">
+        </div>
+    </div>
+</div>
+{% endblock %}

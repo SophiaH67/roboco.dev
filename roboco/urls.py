@@ -28,6 +28,8 @@ urlpatterns = [
     path("invite/", invite_views.invite_user, name="invite_user"),
     # Nginx
     path("nginx/", include("nginx.urls")),
+    # ShareX
+    path("", include("sharex.urls")),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]

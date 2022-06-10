@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "invites.apps.InvitesConfig",
     "nginx.apps.NginxConfig",
+    "sharex.apps.SharexConfig",
     "theme.apps.ThemeConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -171,3 +172,5 @@ CSRF_TRUSTED_ORIGINS = ["http://localhost", "https://roboco.dev"]
 CORS_ORIGIN_WHITELIST = ["http://localhost", "https://roboco.dev"]
 
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN")
+
+MEDIA_ROOT = os.getenv("MEDIA_ROOT") or BASE_DIR / "user_data"
