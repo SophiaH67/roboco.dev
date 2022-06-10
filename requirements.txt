@@ -4,3 +4,4 @@ django-widget-tweaks
 python-dotenv
 psycopg2
 dnspython
+pillow
