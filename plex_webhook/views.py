@@ -4,11 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from discord_webhook import DiscordWebhook
 from django.conf import settings
-import urllib
 
 
 def send_plex_webhook_to_discord_webhook(data):
-    print(json.dumps(data))
     message = f'{data["Server"]["title"]} '
 
     event = data["event"]
