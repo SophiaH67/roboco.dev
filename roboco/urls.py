@@ -30,6 +30,8 @@ urlpatterns = [
     path("nginx/", include("nginx.urls")),
     # ShareX
     path("", include("sharex.urls")),
+    # Plex Webhook
+    path("plex/", include("plex_webhook.urls")),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
 ]

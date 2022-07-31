@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "invites.apps.InvitesConfig",
     "nginx.apps.NginxConfig",
     "sharex.apps.SharexConfig",
+    "plex_webhook.apps.PlexWebhookConfig",
     "theme.apps.ThemeConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -174,3 +175,5 @@ CORS_ORIGIN_WHITELIST = ["http://localhost", "https://roboco.dev"]
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN")
 
 MEDIA_ROOT = os.getenv("MEDIA_ROOT") or BASE_DIR / "user_data"
+
+DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
