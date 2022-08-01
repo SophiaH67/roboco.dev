@@ -11,9 +11,9 @@ def send_plex_webhook_to_discord_webhook(data):
 
     event = data["event"]
     if event == "media.resume":
-        message += f"{data['Account']['title']} resumed {data['Metadata']['grandparentTitle']} - ||{data['Metadata']['title']}||(S{data['Metadata']['parentIndex']}E{data['Metadata']['index']})"
+        pass
     elif event == "media.pause":
-        message += f"{data['Account']['title']} paused {data['Metadata']['grandparentTitle']} - ||{data['Metadata']['title']}||(S{data['Metadata']['parentIndex']}E{data['Metadata']['index']})"
+        pass
     elif event == "media.play":
         message += f"{data['Account']['title']} started {data['Metadata']['grandparentTitle']} - ||{data['Metadata']['title']}||(S{data['Metadata']['parentIndex']}E{data['Metadata']['index']})"
     elif event == "media.stop":
