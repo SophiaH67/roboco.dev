@@ -7,13 +7,13 @@ from django.conf import settings
 
 
 def send_plex_webhook_to_discord_webhook(data):
-    message = f'{data["Server"]["title"]} '
+    message = f'[{data["Server"]["title"]}] '
 
     event = data["event"]
     if event == "media.resume":
-        pass
+        return
     elif event == "media.pause":
-        pass
+        return
     elif event == "media.play":
         message += f"{data['Account']['title']} started {data['Metadata']['grandparentTitle']} - ||{data['Metadata']['title']}||(S{data['Metadata']['parentIndex']}E{data['Metadata']['index']})"
     elif event == "media.stop":
