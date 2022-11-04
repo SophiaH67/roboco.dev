@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Roboco.dev backend",
+  "main": "manage.py",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "python manage.py runserver"
+  }
+}
