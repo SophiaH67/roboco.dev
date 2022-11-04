@@ -1,0 +1,14 @@
+0 silly argv {
+0 silly argv   _: [ 'run' ],
+0 silly argv   lernaVersion: '6.0.1',
+0 silly argv   '$0': '/home/marnix/git/roboco.dev/node_modules/.bin/lerna',
+0 silly argv   script: 'dev'
+0 silly argv }
+1 notice cli v6.0.1
+2 verbose rootPath /home/marnix/git/roboco.dev
+3 verbose run nx.json was not found or is missing targetDefaults. Task dependencies will not be automatically included.
+4 error Error: Invalid projects:
+4 error     at checkForInvalidProjects (/home/marnix/git/roboco.dev/node_modules/nx/src/command-line/run-many.js:45:15)
+4 error     at projectsToRun (/home/marnix/git/roboco.dev/node_modules/nx/src/command-line/run-many.js:38:5)
+4 error     at /home/marnix/git/roboco.dev/node_modules/nx/src/command-line/run-many.js:23:26
+4 error     at Generator.next (<anonymous>)

@@ -1,0 +1,20 @@
+{
+  "name": "roboco.dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/marnixah/roboco.dev.git",
+  "author": "marnixah <marnix@roboco.dev>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^6.0.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev --stream",
+    "new-version": "lerna version --conventional-commits --yes",
+    "postinstall": "lerna run setup"
+  }
+}

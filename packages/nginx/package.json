@@ -1,0 +1,12 @@
+{
+  "name": "nginx",
+  "version": "1.0.1",
+  "description": "Roboco.dev reverse proxy",
+  "main": "nginx.conf",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "docker-compose up",
+    "setup": "python generate.py"
+  }
+}

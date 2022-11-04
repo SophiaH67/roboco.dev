@@ -1,0 +1,12 @@
+{
+  "name": "backend",
+  "version": "1.0.1",
+  "description": "Roboco.dev backend",
+  "main": "manage.py",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "python manage.py runserver 0.0.0.0:8000",
+    "setup": "pip install -r requirements.txt && python manage.py migrate"
+  }
+}
