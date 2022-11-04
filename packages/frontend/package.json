@@ -6,7 +6,7 @@
     "start": "next start"
   },
   "name": "frontend",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
     "next": "latest",
     "react": "18.2.0",
