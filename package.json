@@ -12,8 +12,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts":{
+  "scripts": {
     "dev": "lerna run dev --stream",
-    "new-version": "lerna version --conventional-commits --yes"
+    "new-version": "lerna version --conventional-commits --yes",
+    "postinstall": "lerna run setup"
   }
 }
