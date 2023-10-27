@@ -34,5 +34,4 @@ urlpatterns = [
     path("plex/", include("plex_webhook.urls")),
     # Django Reload
     path("__reload__/", include("django_browser_reload.urls")),
-    path('openid/', include('oidc_provider.urls', namespace='oidc_provider')),
 ]
