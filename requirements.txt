@@ -6,3 +6,4 @@ psycopg2
 dnspython
 pillow
 discord_webhook
+django-oidc-provider

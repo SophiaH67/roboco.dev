@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "oidc_provider",
     "tailwind",
     "django_browser_reload",
     "widget_tweaks",
@@ -155,7 +156,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LOGIN_REDIRECT_URL = "index"
-LOGIN_URL = "login"
+LOGIN_URL = "/login"
 AUTH_USER_MODEL = "users.User"
 # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
