@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:latest
+FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
 
 WORKDIR /app
 
