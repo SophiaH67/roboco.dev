@@ -12,10 +12,10 @@ Everything here is inside `nix develop`.
 
 For dependencies, `cd theme/static_src`, then `npm i`.
 
-For dev, from root, python `manage.py tailwind`.
+For dev, from root, python `manage.py tailwind start`.
 
 ### Web
 
 For dependencies, `pip install -r requirements.txt`.
 
-For dev, `python manage.py migrate`, then `python manage.py runserver 0.0.0.0:8080`.
+For dev, `python manage.py migrate`, then `python manage.py runserver 0.0.0.0:8000`.
