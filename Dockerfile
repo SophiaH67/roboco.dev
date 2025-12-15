@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.11-nodejs16-bullseye
+FROM nikolaik/python-nodejs:python3.12-nodejs22-bookworm
 
 WORKDIR /app
 
