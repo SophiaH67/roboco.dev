@@ -38,12 +38,19 @@
           <a href="{% url 'profile' %}" class="text-white whitespace-nowrap mr-4">
             Harobo <span class="text-pink-400 capitalize">{{ user.username }}</span>~
           </a>
-          <a
-            href="{% url 'logout' %}"
-            class="w-full rounded-sm px-3 py-1 text-xl text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
+          <form
+            method="post"
+            action="{% url 'logout' %}"
+            class="w-full inline"
           >
-            Logout
-          </a>
+            {% csrf_token %}
+            <button
+              type="submit"
+              class="w-full rounded-sm px-3 py-1 text-xl text-gray-100 bg-transparent border-gray-100 border-2 hover:bg-gray-100 hover:border-gray-700 hover:text-gray-700 transition duration-500 ease-in-out"
+            >
+              Logout
+            </a>
+          </form>
           {% else %}
           <a
             href="{% url 'login' %}"
