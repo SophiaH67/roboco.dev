@@ -22,7 +22,7 @@
           }
         );
 
-      version = "3.11";
+      version = "3.12";
     in
     {
       devShells = forEachSupportedSystem (
