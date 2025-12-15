@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "tailwind",
     "widget_tweaks",
+    "django_otp_webauthn",
+    "django_otp",
 ]
 
 INTERNAL_IPS = ["127.0.0.1"]
@@ -56,6 +58,7 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django_otp.middleware.OTPMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -175,3 +178,16 @@ SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN")
 MEDIA_ROOT = os.getenv("MEDIA_ROOT") or BASE_DIR / "user_data"
 
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
+
+# The name of the relying party (RP). This is sometimes shown to the user when they register a Passkey.
+OTP_WEBAUTHN_RP_NAME = "Robosa"
+# This is necessary to bind the Passkey to a specific domain. This should be the domain of your website.
+OTP_WEBAUTHN_RP_ID = os.getenv("OTP_WEBAUTHN_RP_ID", default="localhost")
+# This is used to check the origin of the request and is used for security. It is similar to Django's CSRF_TRUSTED_ORIGINS setting.
+# The origins must always be a subdomain of the RP ID or the RP ID itself.
+OTP_WEBAUTHN_ALLOWED_ORIGINS = ["http://localhost:8000", "https://roboco.dev"]
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "django_otp_webauthn.backends.WebAuthnBackend"
+]

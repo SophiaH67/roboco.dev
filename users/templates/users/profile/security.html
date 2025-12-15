@@ -1,0 +1,41 @@
+{% extends "roboco/layout.html" %}
+{% block title %}Roboco - Security{% endblock%}
+{% block content %}
+{% load otp_webauthn %}
+
+{% comment %}
+This template is displayed when WebAuthn registration is supported.
+The template must contain a button with the id `passkey-register-button`. To display status and error messages, include an element with the id `passkey-register-status-message`.
+{% endcomment %}
+<div class="h-full">
+  <div class="font-bold mb-6 text-center text-6xl text-pink-400">
+    Pass<span class="text-yellow-400">key</span>ssss
+  </div>
+
+  <div class="flex flex-col flex-wrap justify-center text-white">
+    <!-- Todo: when I figure this out ig -->
+    <!-- <span class="text-pink-400 text-center">You have <span class="text-yellow-400">no</span> registered passkeys.</span> -->
+    <template id="passkey-registration-available-template">
+        <button type="button" id="passkey-register-button" class="p-1 bg-blur-xl border border-yellow-400 text-pink-400 block">Register Pass<span class="text-yellow-400">key</span></button>
+        <div id="passkey-register-status-message"></div>
+      </template>
+
+    {% comment %}
+    This template is displayed when WebAuthn registration is not supported.
+    {% endcomment %}
+    <template id="passkey-registration-unavailable-template">
+        <p>Sorry, your browser has no Passkey support</p>
+    </template>
+
+    {% comment %}
+    This placeholder element will be replaced with either the contents of the `passkey-registration-available-template` or the `passkey-registration-unavailable-template` template.
+    {% endcomment %}
+    <span id="passkey-registration-placeholder"></span>
+
+    {% comment %}
+    This template tag renders all the necessary <script> tags for the default registration implementation
+    {% endcomment %}
+    {% render_otp_webauthn_register_scripts %}
+  </div>
+</div>
+{% endblock %}

@@ -21,4 +21,5 @@ urlpatterns = [
         name="logout",
     ),
     path("profile/", user_views.profile, name="profile"),
+    path("profile/security/", user_views.profile_security, name="profile"),
 ]

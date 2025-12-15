@@ -32,4 +32,6 @@ urlpatterns = [
     path("", include("sharex.urls")),
     # Plex Webhook
     path("plex/", include("plex_webhook.urls")),
+    # Webauth / passkeysp
+    path("webauthn/", include("django_otp_webauthn.urls", namespace="otp_webauthn")),
 ]

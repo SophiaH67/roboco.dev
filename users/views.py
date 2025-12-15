@@ -32,3 +32,7 @@ def register(request, inviter=None, email=None):
 @login_required
 def profile(request):
     return render(request, "users/profile.html")
+
+@login_required
+def profile_security(request):
+    return render(request, "users/profile/security.html")
