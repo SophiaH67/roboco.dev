@@ -36,7 +36,7 @@ def profile(request):
 
 @login_required
 def profile_security(request):
-    otp_devices = devices_for_user(request.user)
+    otp_devices = WebAuthnCredential.objects.select_for_update().filter(user=request.user)
     otp_devices_list = list(otp_devices)
 
     context = {
