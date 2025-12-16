@@ -22,4 +22,5 @@ urlpatterns = [
     ),
     path("profile/", user_views.profile, name="profile"),
     path("profile/security/", user_views.profile_security, name="security"),
+    path("profile/security/delete/<int:device_id>/", user_views.profile_security_device_delete, name="security-delete"),
 ]

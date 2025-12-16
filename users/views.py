@@ -5,6 +5,7 @@ from .decorators import logout_required
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
 from django_otp import devices_for_user
+from django_otp_webauthn.models import WebAuthnCredential 
 
 @logout_required
 @invite_required
@@ -42,3 +43,13 @@ def profile_security(request):
         'devices': otp_devices_list,
     }
     return render(request, "users/profile/security.html", context)
+
+@login_required
+def profile_security_device_delete(request, device_id):
+    device = WebAuthnCredential.objects.select_for_update().filter(id=device_id, user=request.user)
+
+    if request.method == 'POST':
+        device.delete()
+        return redirect('security')
+
+    return redirect('security')

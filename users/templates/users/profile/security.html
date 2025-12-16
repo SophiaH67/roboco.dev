@@ -53,7 +53,12 @@ The template must contain a button with the id `passkey-register-button`. To dis
             <td class="p-2 border border-pink-400 text-yellow-400">{{device.last_used_at}}</td>
             <td class="p-2 border border-pink-400 text-yellow-400">{{device.created_at}}</td>
             <td class="p-2 border border-pink-400 text-yellow-400">{{device.backup_state}}</td>
-            <td class="p-2 border border-pink-400 text-yellow-400"><button class="border border-yellow-400 bg-pink-400 text-white w-full">Delete</button></td>
+            <td class="p-2 border border-pink-400 text-yellow-400">
+              <form action="{% url 'security-delete' device.id %}" method="post" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="border border-yellow-400 bg-pink-400 text-white w-full">Delete</button>
+              </form>
+            </td>
           </tr>
         {% endfor %}
       </table>
