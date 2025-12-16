@@ -40,7 +40,7 @@ def profile_security(request):
     with transaction.atomic():
         otp_devices = WebAuthnCredential.objects.select_for_update().filter(user=request.user)
 
-    otp_devices_list = list(otp_devices)
+        otp_devices_list = list(otp_devices)
 
     context = {
         'devices': otp_devices_list,
