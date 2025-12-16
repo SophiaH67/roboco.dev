@@ -4,7 +4,7 @@ from invites.lib import send_invite_accepted_email, send_user_registered_email
 from .decorators import logout_required
 from .forms import UserRegisterForm
 from django.contrib.auth.decorators import login_required
-
+from django_otp import devices_for_user
 
 @logout_required
 @invite_required
@@ -35,4 +35,10 @@ def profile(request):
 
 @login_required
 def profile_security(request):
-    return render(request, "users/profile/security.html")
+    otp_devices = devices_for_user(request.user)
+    otp_devices_list = list(otp_devices)
+
+    context = {
+        'devices': otp_devices_list,
+    }
+    return render(request, "users/profile/security.html", context)

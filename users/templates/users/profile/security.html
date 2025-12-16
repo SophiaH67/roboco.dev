@@ -13,8 +13,6 @@ The template must contain a button with the id `passkey-register-button`. To dis
   </div>
 
   <div class="flex flex-col flex-wrap justify-center text-white">
-    <!-- Todo: when I figure this out ig -->
-    <!-- <span class="text-pink-400 text-center">You have <span class="text-yellow-400">no</span> registered passkeys.</span> -->
     <template id="passkey-registration-available-template">
         <button type="button" id="passkey-register-button" class="p-1 bg-blur-xl border border-yellow-400 text-pink-400 block">Register Pass<span class="text-yellow-400">key</span></button>
         <div id="passkey-register-status-message"></div>
@@ -36,6 +34,32 @@ The template must contain a button with the id `passkey-register-button`. To dis
     This template tag renders all the necessary <script> tags for the default registration implementation
     {% endcomment %}
     {% render_otp_webauthn_register_scripts %}
+
+    {% if devices %}
+      <table class="table-auto border p-2 border-pink-400 mt-4">
+        <thead>
+          <tr>
+            <th class="p-2 text-yellow-400">Aaguid</th>
+            <th class="p-2 text-yellow-400">Last Used</th>
+            <th class="p-2 text-yellow-400">Registered</th>
+            <th class="p-2 text-yellow-400">Backed Up</th>
+            <th class="p-2 text-yellow-400">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for device in devices %}
+          <tr>
+            <td class="p-2 border border-pink-400 text-yellow-400">{{device.aaguid}}</td>
+            <td class="p-2 border border-pink-400 text-yellow-400">{{device.last_used_at}}</td>
+            <td class="p-2 border border-pink-400 text-yellow-400">{{device.created_at}}</td>
+            <td class="p-2 border border-pink-400 text-yellow-400">{{device.backup_state}}</td>
+            <td class="p-2 border border-pink-400 text-yellow-400"><button class="border border-yellow-400 bg-pink-400 text-white w-full">Delete</button></td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% else %}
+        <span class="text-pink-400 text-center">You have <span class="text-yellow-400">no</span> registered passkeys.</span>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
