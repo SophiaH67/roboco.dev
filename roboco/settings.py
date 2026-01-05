@@ -88,7 +88,7 @@ WSGI_APPLICATION = "roboco.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 if os.getenv("PYTHON_ENV") == "production":
-    DEBUG = not False
+    DEBUG = False
     SECRET_KEY = os.getenv("SECRET_KEY")
     DATABASES = {
         "default": {
