@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "django_otp_webauthn",
     "django_otp",
+    "oauth2_provider",
 ]
 
 INTERNAL_IPS = ["127.0.0.1"]
@@ -190,5 +191,15 @@ OTP_WEBAUTHN_ALLOWED_ORIGINS = ["http://localhost:8000", "https://roboco.dev"]
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "django_otp_webauthn.backends.WebAuthnBackend"
+    "django_otp_webauthn.backends.WebAuthnBackend",
 ]
+
+OAUTH2_PROVIDER = {
+    "OIDC_ENABLED": True,
+    "OIDC_RSA_PRIVATE_KEY": os.environ.get("OIDC_RSA_PRIVATE_KEY"),
+    "SCOPES": {
+        "openid": "OpenID Connect scope",
+        # ... any other scopes that you use
+    },
+    # ... any other settings you want
+}

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from oauth2_provider import urls as oauth2_urls
 from roboco import views
 from invites import views as invite_views
 
@@ -34,4 +35,5 @@ urlpatterns = [
     path("plex/", include("plex_webhook.urls")),
     # Webauth / passkeysp
     path("webauthn/", include("django_otp_webauthn.urls", namespace="otp_webauthn")),
+    path('o/', include(oauth2_urls)),
 ]

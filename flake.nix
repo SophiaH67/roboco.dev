@@ -68,6 +68,7 @@
               pkgs.gcc
 
               pkgs.nodejs
+              pkgs.openssl_3
             ];
           };
         }

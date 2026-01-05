@@ -19,3 +19,7 @@ For dev, from root, python `manage.py tailwind start`.
 For dependencies, `pip install -r requirements.txt`.
 
 For dev, `python manage.py migrate`, then `python manage.py runserver 0.0.0.0:8000`.
+
+## Misc
+
+Generate an OIDC secret with `openssl genrsa -out oidc.key 4096`
