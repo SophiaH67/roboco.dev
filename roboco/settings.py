@@ -176,7 +176,7 @@ CORS_ORIGIN_WHITELIST = ["http://localhost", "https://roboco.dev"]
 SESSION_COOKIE_DOMAIN = os.getenv("SESSION_COOKIE_DOMAIN")
 
 MEDIA_ROOT = os.getenv("MEDIA_ROOT") or BASE_DIR / "user_data"
-STATIC_ROOT = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DISCORD_WEBHOOK_URL = os.getenv("DISCORD_WEBHOOK_URL")
 
