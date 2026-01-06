@@ -18,4 +18,4 @@ RUN python manage.py collectstatic --no-input
 
 EXPOSE 8000
 
-CMD ["gunicorn", "roboco.wsgi", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "roboco.wsgi", "--bind", "0.0.0.0:8000", "--log-level", "debug", "--error-logfile", "-", "--access-logfile", "-", "--capture-output"]
